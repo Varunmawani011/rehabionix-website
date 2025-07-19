@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehabionix - Pioneering Robotic Rehabilitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="home" class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">Rehabionix</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">About</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 transition duration-300">Services</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden flex items-center">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#home" class="block py-2 px-4 text-sm hover:bg-gray-100">Home</a>
+            <a href="#about" class="block py-2 px-4 text-sm hover:bg-gray-100">About</a>
+            <a href="#services" class="block py-2 px-4 text-sm hover:bg-gray-100">Services</a>
+            <a href="#contact" class="block py-2 px-4 text-sm hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-600 text-white pt-32 pb-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Pioneering the Future of Rehabilitation</h2>
+            <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">At Rehabionix, we integrate cutting-edge robotics and virtual reality to create personalized therapy solutions that accelerate recovery and empower lives.</p>
+            <a href="#services" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full hover:bg-blue-100 transition duration-300 ease-in-out transform hover:scale-105">Discover Our Solutions</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800">About Rehabionix</h3>
+                <p class="text-gray-600 mt-2">Our Mission is to Revolutionize Recovery.</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Our+Lab" alt="Rehabionix Lab" class="rounded-lg shadow-xl w-full h-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <h4 class="text-2xl font-semibold text-gray-800 mb-4">Who We Are</h4>
+                    <p class="text-gray-600 mb-4">
+                        Rehabionix was founded by a team of passionate engineers, doctors, and therapists dedicated to making advanced rehabilitation technology accessible to all. We believe in the power of innovation to overcome physical limitations and restore hope.
+                    </p>
+                    <p class="text-gray-600">
+                        Our state-of-the-art facility is where we design, build, and test the next generation of therapeutic devices. We are committed to research and development, constantly pushing the boundaries of what's possible in physical therapy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800">Our Innovative Services</h3>
+                <p class="text-gray-600 mt-2">Tailored technologies for a faster, more engaging recovery.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 16v-2m8-6h2M4 12H2m15.364 6.364l1.414 1.414M4.222 4.222l1.414 1.414m12.728 0l-1.414 1.414M5.636 18.364l-1.414 1.414M12 18a6 6 0 100-12 6 6 0 000 12z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Robotic-Assisted Therapy</h4>
+                    <p class="text-gray-600">High-repetition, data-driven exercises using our proprietary robotic exoskeletons to rebuild strength and motor control.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 15.5M9.75 3.104c.169-.02.34-.034.525-.034h3.45c.185 0 .356.014.525.034m-4.5 0a2.25 2.25 0 00-2.25 2.25v7.5a2.25 2.25 0 002.25 2.25h3.45a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25M15 15.5l-2.091-2.091a2.25 2.25 0 01-.659-1.591V3.104m2.25 0c.169-.02.34-.034.525-.034h3.45c.185 0 .356.014.525.034m-4.5 0a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-3.45a2.25 2.25 0 01-2.25-2.25v-7.5a2.25 2.25 0 012.25-2.25"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">VR Rehabilitation</h4>
+                    <p class="text-gray-600">Immersive virtual environments that make therapy engaging and fun, helping to rewire neural pathways for functional recovery.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Personalized Data Analytics</h4>
+                    <p class="text-gray-600">We track progress with precision sensors and provide detailed reports to patients and clinicians, optimizing treatment plans.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800">Get In Touch</h3>
+                <p class="text-gray-600 mt-2">Have questions? We'd love to hear from you.</p>
+            </div>
+            <div class="max-w-2xl mx-auto">
+                <form id="contact-form" class="bg-gray-50 p-8 rounded-lg shadow-md">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300">Send Message</button>
+                    </div>
+                </form>
+                <div id="form-status" class="text-center mt-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 Rehabionix. All Rights Reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="hover:text-blue-400 transition duration-300">Facebook</a>
+                <a href="#" class="hover:text-blue-400 transition duration-300">Twitter</a>
+                <a href="#" class="hover:text-blue-400 transition duration-300">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileMenuLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation feedback
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                formStatus.innerHTML = '<p class="text-green-600">Thank you for your message! We will get back to you soon.</p>';
+                contactForm.reset();
+            } else {
+                formStatus.innerHTML = '<p class="text-red-600">Please fill out all fields.</p>';
+            }
+
+            // Clear status message after 3 seconds
+            setTimeout(() => {
+                formStatus.innerHTML = '';
+            }, 3000);
+        });
+    </script>
+
+</body>
+</html>
