@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rehabionix - Soft Robotic device for hand rehabilitation</title>
+    <title>Rehabionix - Pioneering Robotic Rehabilitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- GSAP for advanced animations -->
@@ -439,23 +439,56 @@
         });
     </script>
     <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+  // Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-  // Your web app's Firebase configuration
+  // Firebase config (yours is correct)
   const firebaseConfig = {
     apiKey: "AIzaSyDnBXZuBBtlkatKRCeagZLcw3szEwjveoE",
     authDomain: "contact-form-011.firebaseapp.com",
     projectId: "contact-form-011",
-    storageBucket: "contact-form-011.firebasestorage.app",
+    storageBucket: "contact-form-011.appspot.com",
     messagingSenderId: "450325580320",
     appId: "1:450325580320:web:b7a568175d0bbe82244a45"
   };
 
-  // Initialize Firebase
+  // Initialize Firebase + Firestore
   const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Contact form submit handler
+  const contactForm = document.getElementById("contact-form");
+  const formStatus = document.getElementById("form-status");
+
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    try {
+      await addDoc(collection(db, "contacts"), {
+        name,
+        email,
+        message,
+        timestamp: new Date()
+      });
+
+      formStatus.innerHTML = `<p class="text-green-600 font-semibold">✅ Message sent successfully!</p>`;
+      contactForm.reset();
+
+    } catch (error) {
+      console.error("❌ Error writing document: ", error);
+      formStatus.innerHTML = `<p class="text-red-600 font-semibold">Error sending message. Try again.</p>`;
+    }
+
+    setTimeout(() => {
+      formStatus.innerHTML = '';
+    }, 5000);
+  });
 </script>
+
 </body>
 </html>
