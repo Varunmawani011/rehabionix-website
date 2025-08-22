@@ -6,12 +6,18 @@
     <title>Rehabionix - Pioneering Robotic Rehabilitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #121212; /* Near-black background */
-            color: #e5e7eb;
+            background-color: #f9fafb;
+            color: #1f2937;
+            overflow-x: hidden;
         }
         #hero-canvas-container {
             position: fixed;
@@ -20,6 +26,7 @@
             width: 100%;
             height: 100vh;
             z-index: 0;
+            opacity: 0.5;
         }
         #hero-canvas {
             width: 100%;
@@ -29,29 +36,41 @@
             position: relative;
             z-index: 1;
         }
-        .glass-effect {
-            background-color: rgba(24, 24, 24, 0.85); /* Darker semi-transparent */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(159, 18, 57, 0.2); /* Maroon border */
-        }
         .content-section {
-            padding: 5rem 1.5rem;
-            background-color: rgba(18, 18, 18, 0.7); /* Near-black semi-transparent */
+            padding: 6rem 1.5rem;
         }
-        /* Scroll-triggered fade-in animation */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        /* Preloader styles */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f9fafb;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
         }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+        #preloader .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #d1d5db;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body class="text-gray-200">
+<body class="text-gray-800">
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
 
     <!-- This container will hold the 3D animation -->
     <div id="hero-canvas-container">
@@ -60,26 +79,28 @@
 
     <div class="content-wrapper">
         <!-- Header & Navigation -->
-        <header id="header" class="fixed w-full z-20 bg-opacity-80 backdrop-blur-md border-b border-red-800/20" style="background-color: rgba(24, 24, 24, 0.8);">
+        <header id="header" class="fixed w-full z-20 bg-white/80 backdrop-blur-md border-b border-gray-200/80">
             <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#home" class="nav-link text-2xl font-bold text-red-400">Rehabionix</a>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-300 hover:text-red-400 transition duration-300">Home</a>
-                    <a href="#about" class="nav-link text-gray-300 hover:text-red-400 transition duration-300">About</a>
-                    <a href="#services" class="nav-link text-gray-300 hover:text-red-400 transition duration-300">Services</a>
-                    <a href="#team" class="nav-link text-gray-300 hover:text-red-400 transition duration-300">Team</a>
-                    <a href="#contact" class="nav-link text-gray-300 hover:text-red-400 transition duration-300">Contact</a>
+                <a href="#home" class="nav-link">
+                    <img src="https://placehold.co/150x50/3B82F6/FFFFFF?text=Rehabionix" alt="Rehabionix Logo" class="h-10 w-auto">
+                </a>
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">About</a>
+                    <a href="#services" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">Services</a>
+                    <a href="#team" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">Team</a>
+                    <a href="#contact" class="nav-link bg-blue-600 text-white font-medium py-2 px-5 rounded-full hover:bg-blue-700 transition duration-300">Contact</a>
                 </nav>
-                <button id="mobile-menu-button" class="md:hidden flex items-center text-gray-300">
+                <button id="mobile-menu-button" class="md:hidden flex items-center text-gray-600">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden bg-gray-900/90">
-                <a href="#home" class="nav-link block py-2 px-4 text-sm hover:bg-gray-800">Home</a>
-                <a href="#about" class="nav-link block py-2 px-4 text-sm hover:bg-gray-800">About</a>
-                <a href="#services" class="nav-link block py-2 px-4 text-sm hover:bg-gray-800">Services</a>
-                <a href="#team" class="nav-link block py-2 px-4 text-sm hover:bg-gray-800">Team</a>
-                <a href="#contact" class="nav-link block py-2 px-4 text-sm hover:bg-gray-800">Contact</a>
+            <div id="mobile-menu" class="hidden md:hidden bg-white/95">
+                <a href="#home" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Home</a>
+                <a href="#about" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">About</a>
+                <a href="#services" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Services</a>
+                <a href="#team" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Team</a>
+                <a href="#contact" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Contact</a>
             </div>
         </header>
 
@@ -87,150 +108,152 @@
             <!-- Home Section -->
             <section id="home" class="min-h-screen flex items-center justify-center text-center px-6">
                 <div>
-                    <h2 class="text-4xl md:text-6xl font-bold leading-tight mb-4 text-white">Pioneering the Future of Rehabilitation</h2>
-                    <p class="text-lg md:text-xl text-red-200 mb-8 max-w-3xl mx-auto">At Rehabionix, we integrate cutting-edge robotics and virtual reality to create personalized therapy solutions that accelerate recovery and empower lives.</p>
-                    <a href="#services" class="nav-link bg-red-600 text-white font-bold py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-red-600/50">Discover Our Solutions</a>
+                    <h2 id="hero-title" class="text-4xl md:text-6xl font-bold leading-tight mb-4 text-gray-900 opacity-0">Pioneering the Future of Rehabilitation</h2>
+                    <p id="hero-subtitle" class="text-lg md:text-xl text-blue-800 mb-8 max-w-3xl mx-auto opacity-0">At Rehabionix, we integrate cutting-edge robotics and virtual reality to create personalized therapy solutions that accelerate recovery and empower lives.</p>
+                    <div id="hero-button" class="opacity-0">
+                        <a href="#services" class="nav-link bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-blue-600/50 inline-block">Discover Our Solutions</a>
+                    </div>
                 </div>
             </section>
 
-            <!-- About Us Section -->
-            <section id="about" class="content-section">
-                <div class="container mx-auto glass-effect rounded-lg p-8 fade-in-section">
-                    <div class="text-center mb-12">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white">About Rehabionix</h3>
-                        <p class="text-red-300 mt-2">Our Mission is to Revolutionize Recovery.</p>
-                    </div>
-                    <div class="flex flex-col md:flex-row items-center gap-12">
-                        <div class="md:w-1/2">
-                            <div class="rounded-lg shadow-2xl overflow-hidden border border-red-800/30">
-                                <img src="https://placehold.co/600x400/171717/991B1B?text=Our+Facility" alt="Rehabionix Facility" class="w-full h-auto">
+            <!-- All other sections are wrapped for consistent background -->
+            <div class="bg-white relative">
+                <!-- About Us Section -->
+                <section id="about" class="content-section overflow-hidden">
+                    <div class="container mx-auto p-8">
+                        <div class="text-center mb-12 anim-stagger">
+                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">About Rehabionix</h3>
+                            <p class="text-blue-700 mt-2">Our Mission is to Revolutionize Recovery.</p>
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="md:w-1/2 anim-image">
+                                <div class="rounded-lg shadow-2xl overflow-hidden border border-gray-200">
+                                    <img src="https://placehold.co/600x400/FFFFFF/1F2937?text=Our+Facility" alt="Rehabionix Facility" class="w-full h-auto">
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 anim-stagger">
+                                <h4 class="text-2xl font-semibold text-gray-900 mb-4">Who We Are</h4>
+                                <p class="text-gray-600 mb-4">Rehabionix was founded by a team of passionate engineers, doctors, and therapists dedicated to making advanced rehabilitation technology accessible to all. We believe in the power of innovation to overcome physical limitations and restore hope.</p>
+                                <p class="text-gray-600">Our state-of-the-art facility is where we design, build, and test the next generation of therapeutic devices. We are committed to research and development, constantly pushing the boundaries of what's possible in physical therapy.</p>
                             </div>
                         </div>
-                        <div class="md:w-1/2">
-                            <h4 class="text-2xl font-semibold text-white mb-4">Who We Are</h4>
-                            <p class="text-gray-300 mb-4">Rehabionix was founded by a team of passionate engineers, doctors, and therapists dedicated to making advanced rehabilitation technology accessible to all. We believe in the power of innovation to overcome physical limitations and restore hope.</p>
-                            <p class="text-gray-300">Our state-of-the-art facility is where we design, build, and test the next generation of therapeutic devices. We are committed to research and development, constantly pushing the boundaries of what's possible in physical therapy.</p>
+                    </div>
+                </section>
+                
+                <!-- Our Technology Section -->
+                <section id="technology" class="content-section bg-gray-50 overflow-hidden">
+                    <div class="container mx-auto">
+                        <div class="text-center mb-12 anim-stagger">
+                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Technology</h3>
+                            <p class="text-blue-700 mt-2">The science behind the recovery.</p>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
+                                 <h4 class="text-2xl font-semibold text-gray-900 mb-4">Proprietary Exoskeletons</h4>
+                                 <p class="text-gray-600">Our robotic exoskeletons are designed for comfort and precision. They provide adaptive assistance, challenging patients as they regain strength and mobility. Integrated sensors capture thousands of data points per session, allowing for unparalleled analysis of movement quality.</p>
+                            </div>
+                             <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
+                                 <h4 class="text-2xl font-semibold text-gray-900 mb-4">Immersive VR Worlds</h4>
+                                 <p class="text-gray-600">We turn therapy into an adventure. Our VR scenarios are developed with neuroscientists to maximize engagement and promote neuroplasticity. Patients perform functional tasks in realistic simulations, accelerating the transfer of skills to daily life.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-            
-            <!-- Our Technology Section -->
-            <section id="technology" class="content-section">
-                <div class="container mx-auto fade-in-section">
-                    <div class="text-center mb-12">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white">Our Technology</h3>
-                        <p class="text-red-300 mt-2">The science behind the recovery.</p>
-                    </div>
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div class="glass-effect p-8 rounded-lg">
-                             <h4 class="text-2xl font-semibold text-white mb-4">Proprietary Exoskeletons</h4>
-                             <p class="text-gray-300">Our robotic exoskeletons are designed for comfort and precision. They provide adaptive assistance, challenging patients as they regain strength and mobility. Integrated sensors capture thousands of data points per session, allowing for unparalleled analysis of movement quality.</p>
-                        </div>
-                         <div class="glass-effect p-8 rounded-lg">
-                             <h4 class="text-2xl font-semibold text-white mb-4">Immersive VR Worlds</h4>
-                             <p class="text-gray-300">We turn therapy into an adventure. Our VR scenarios are developed with neuroscientists to maximize engagement and promote neuroplasticity. Patients perform functional tasks in realistic simulations, accelerating the transfer of skills to daily life.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Services Section -->
-            <section id="services" class="content-section">
-                <div class="container mx-auto fade-in-section">
-                    <div class="text-center mb-12">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white">Our Innovative Services</h3>
-                        <p class="text-red-300 mt-2">Tailored technologies for a faster, more engaging recovery.</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div class="glass-effect p-8 rounded-lg shadow-lg hover:shadow-red-600/40 transition-shadow duration-300">
-                            <h4 class="text-xl font-bold mb-2 text-white">Robotic-Assisted Therapy</h4>
-                            <p class="text-gray-300">High-repetition, data-driven exercises using our proprietary robotic exoskeletons to rebuild strength and motor control. Ideal for stroke, spinal cord injury, and neurological conditions.</p>
+                <!-- Services Section -->
+                <section id="services" class="content-section overflow-hidden">
+                    <div class="container mx-auto">
+                        <div class="text-center mb-12 anim-stagger">
+                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Innovative Services</h3>
+                            <p class="text-blue-700 mt-2">Tailored technologies for a faster, more engaging recovery.</p>
                         </div>
-                        <div class="glass-effect p-8 rounded-lg shadow-lg hover:shadow-red-600/40 transition-shadow duration-300">
-                            <h4 class="text-xl font-bold mb-2 text-white">VR Rehabilitation</h4>
-                            <p class="text-gray-300">Immersive virtual environments that make therapy engaging and fun, helping to rewire neural pathways for functional recovery and pain management.</p>
-                        </div>
-                        <div class="glass-effect p-8 rounded-lg shadow-lg hover:shadow-red-600/40 transition-shadow duration-300">
-                            <h4 class="text-xl font-bold mb-2 text-white">Personalized Data Analytics</h4>
-                            <p class="text-gray-300">We track progress with precision sensors and provide detailed, easy-to-understand reports to patients and clinicians, allowing for the optimization of treatment plans.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Testimonials Section -->
-            <section id="testimonials" class="content-section">
-                <div class="container mx-auto fade-in-section">
-                    <div class="text-center mb-12">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white">Success Stories</h3>
-                        <p class="text-red-300 mt-2">Hear from those who have experienced the future of rehab.</p>
-                    </div>
-                     <div class="grid md:grid-cols-2 gap-8">
-                        <div class="glass-effect p-8 rounded-lg">
-                            <p class="text-gray-300 italic mb-4">"After my stroke, I thought I'd never use my arm again. Six weeks with Rehabionix changed everything. The technology is incredible, and the team is so supportive."</p>
-                            <p class="font-bold text-red-400">- John D., Stroke Survivor</p>
-                        </div>
-                         <div class="glass-effect p-8 rounded-lg">
-                            <p class="text-gray-300 italic mb-4">"As a physical therapist, I'm blown away by the data Rehabionix provides. It allows me to tailor my programs in ways I never could before. It's a game-changer for the profession."</p>
-                            <p class="font-bold text-red-400">- Dr. Sarah Chen, DPT</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                                <h4 class="text-xl font-bold mb-2 text-gray-900">Robotic-Assisted Therapy</h4>
+                                <p class="text-gray-600">High-repetition, data-driven exercises using our proprietary robotic exoskeletons to rebuild strength and motor control.</p>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                                <h4 class="text-xl font-bold mb-2 text-gray-900">VR Rehabilitation</h4>
+                                <p class="text-gray-600">Immersive virtual environments that make therapy engaging and fun, helping to rewire neural pathways for functional recovery.</p>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
+                                <h4 class="text-xl font-bold mb-2 text-gray-900">Personalized Data Analytics</h4>
+                                <p class="text-gray-600">We track progress with precision sensors and provide detailed reports to patients and clinicians, optimizing treatment plans.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+                
+                <!-- Testimonials Section -->
+                <section id="testimonials" class="content-section bg-gray-50 overflow-hidden">
+                    <div class="container mx-auto">
+                        <div class="text-center mb-12 anim-stagger">
+                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Success Stories</h3>
+                            <p class="text-blue-700 mt-2">Hear from those who have experienced the future of rehab.</p>
+                        </div>
+                         <div class="grid md:grid-cols-2 gap-8">
+                             <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
+                                 <p class="text-gray-600 italic mb-4">"After my stroke, I thought I'd never use my arm again. Six weeks with Rehabionix changed everything. The technology is incredible, and the team is so supportive."</p>
+                                 <p class="font-bold text-blue-600">- John D., Stroke Survivor</p>
+                             </div>
+                              <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
+                                 <p class="text-gray-600 italic mb-4">"As a physical therapist, I'm blown away by the data Rehabionix provides. It allows me to tailor my programs in ways I never could before. It's a game-changer for the profession."</p>
+                                 <p class="font-bold text-blue-600">- Dr. Sarah Chen, DPT</p>
+                             </div>
+                        </div>
+                    </div>
+                </section>
 
-            <!-- Team Section -->
-            <section id="team" class="content-section">
-                <div class="container mx-auto fade-in-section">
-                    <div class="text-center mb-12">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white">Meet Our Team</h3>
-                        <p class="text-red-300 mt-2">The minds behind the mission.</p>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                        <div class="glass-effect text-center p-8 rounded-lg">
-                            <!-- Replace with your image link -->
-                            <img src="varun image.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-400" alt="CEO">
-                            <h4 class="text-xl font-bold text-white">Varun Mawani</h4>
-                            <p class="text-red-300">Founder</p>
+                <!-- Team Section -->
+                <section id="team" class="content-section overflow-hidden">
+                    <div class="container mx-auto">
+                        <div class="text-center mb-12 anim-stagger">
+                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Meet Our Team</h3>
+                            <p class="text-blue-700 mt-2">The minds behind the mission.</p>
                         </div>
-                        <div class="glass-effect text-center p-8 rounded-lg">
-                            <!-- Replace with your image link -->
-                            <img src="Sanjeev image(1).jpg" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-400" alt="CTO">
-                            <h4 class="text-xl font-bold text-white">Sanjeev Kumar</h4>
-                            <p class="text-red-300">Co-Founder</p>
-                        </div>
-                        <div class="glass-effect text-center p-8 rounded-lg">
-                            <!-- Replace with your image link -->
-                            <img src="https://your-image-host.com/path-to-cmo-image.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-red-400" alt="CMO">
-                            <h4 class="text-xl font-bold text-white">Chitra banerjee</h4>
-                            <p class="text-red-300">CEO</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                            <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
+                                <img src="https://placehold.co/150x150/DBEAFE/1E3A8A?text=CEO" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CEO">
+                                <h4 class="text-xl font-bold text-gray-900">Dr. Aris Thorne</h4>
+                                <p class="text-blue-700">Founder & CEO</p>
+                            </div>
+                            <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
+                                <img src="https://placehold.co/150x150/DBEAFE/1E3A8A?text=CTO" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CTO">
+                                <h4 class="text-xl font-bold text-gray-900">Lena Petrova</h4>
+                                <p class="text-blue-700">Chief Technology Officer</p>
+                            </div>
+                            <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
+                                <img src="https://placehold.co/150x150/DBEAFE/1E3A8A?text=CMO" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CMO">
+                                <h4 class="text-xl font-bold text-gray-900">Dr. Kenji Tanaka</h4>
+                                <p class="text-blue-700">Chief Medical Officer</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Contact Section -->
-            <section id="contact" class="content-section">
-                <div class="container mx-auto glass-effect rounded-lg p-8 fade-in-section">
-                    <div class="text-center mb-12">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white">Get In Touch</h3>
-                        <p class="text-red-300 mt-2">Have questions? We'd love to hear from you.</p>
+                <!-- Contact Section -->
+                <section id="contact" class="content-section bg-gray-50 overflow-hidden">
+                    <div class="container mx-auto bg-white rounded-lg shadow-xl p-8 anim-stagger">
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Get In Touch</h3>
+                            <p class="text-blue-700 mt-2">Have questions? We'd love to hear from you.</p>
+                        </div>
+                        <div class="max-w-2xl mx-auto">
+                            <form id="contact-form" class="rounded-lg">
+                                <div class="mb-4"><input type="text" id="name" placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 text-gray-900" required></div>
+                                <div class="mb-4"><input type="email" id="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 text-gray-900" required></div>
+                                <div class="mb-6"><textarea id="message" placeholder="Message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 text-gray-900" required></textarea></div>
+                                <div class="text-center"><button id="submitBtn" type="submit" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 shadow-lg shadow-blue-600/50">Send Message</button></div>
+                            </form>
+                            <div id="form-status" class="text-center mt-4"></div>
+                        </div>
                     </div>
-                    <div class="max-w-2xl mx-auto">
-                        <form id="contact-form" class="rounded-lg">
-                            <div class="mb-4"><input type="text" id="name" placeholder="Name" class="w-full px-4 py-2 border border-red-800/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900/50 text-white" required></div>
-                            <div class="mb-4"><input type="email" id="email" placeholder="Email" class="w-full px-4 py-2 border border-red-800/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900/50 text-white" required></div>
-                            <div class="mb-6"><textarea id="message" placeholder="Message" rows="5" class="w-full px-4 py-2 border border-red-800/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-900/50 text-white" required></textarea></div>
-                            <div class="text-center"><button type="submit" class="bg-red-600 text-white font-bold py-3 px-8 rounded-full hover:bg-red-700 transition duration-300 shadow-lg shadow-red-600/50">Send Message</button></div>
-                        </form>
-                        <div id="form-status" class="text-center mt-4"></div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </main>
 
         <!-- Footer -->
-        <footer class="bg-gray-900/80 text-white py-8">
+        <footer class="bg-gray-100 text-gray-600 py-8">
             <div class="container mx-auto px-6 text-center">
                 <p>&copy; 2024 Rehabionix. All Rights Reserved.</p>
             </div>
@@ -238,63 +261,59 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-
-        // --- Firebase Configuration ---
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "your-fallback-api-key", authDomain: "your-project.firebaseapp.com", projectId: "your-project-id" };
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        let db;
-        
-        async function initializeFirebase() {
-            try {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                const auth = getAuth(app);
-                if (initialAuthToken) { await signInWithCustomToken(auth, initialAuthToken); } else { await signInAnonymously(auth); }
-                console.log("Firebase initialized.");
-            } catch (error) {
-                console.error("Firebase initialization failed:", error);
-            }
-        }
-
         // --- Three.js Hero Animation ---
-        let scene, camera, renderer, mainObject;
+        let scene, camera, renderer, plane, clock;
+        const mouse = new THREE.Vector2();
 
+        const vertexShader = `
+            uniform float u_time;
+            uniform vec2 u_mouse;
+            varying vec2 vUv;
+            void main() {
+                vUv = uv;
+                vec3 pos = position;
+                float dist = distance(vec2(pos.x, pos.y), u_mouse);
+                pos.z += sin(pos.x * 10.0 + u_time) * 0.1;
+                pos.z += sin(pos.y * 10.0 + u_time) * 0.1;
+                pos.z += sin(dist * 10.0 - u_time) * 0.1;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+            }
+        `;
+
+        const fragmentShader = `
+            uniform float u_time;
+            varying vec2 vUv;
+            void main() {
+                gl_FragColor = vec4(mix(vec3(0.2, 0.5, 0.9), vec3(0.9, 0.2, 0.5), vUv.x + vUv.y), 1.0);
+            }
+        `;
+        
         function init3D() {
             const container = document.getElementById('hero-canvas-container');
             scene = new THREE.Scene();
+            clock = new THREE.Clock();
             camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
-            camera.position.z = 5;
+            camera.position.z = 2;
 
             renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true, antialias: true });
             renderer.setSize(container.offsetWidth, container.offsetHeight);
 
-            mainObject = new THREE.Group();
-            // Core object with a deep maroon color
-            const geometry1 = new THREE.IcosahedronGeometry(1.5, 0);
-            const material1 = new THREE.MeshStandardMaterial({ color: 0x991B1B, roughness: 0.5, metalness: 0.8 });
-            const core = new THREE.Mesh(geometry1, material1);
-            mainObject.add(core);
+            const geometry = new THREE.PlaneGeometry(5, 5, 50, 50);
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    u_time: { value: 0.0 },
+                    u_mouse: { value: new THREE.Vector2(0, 0) }
+                },
+                vertexShader,
+                fragmentShader,
+                wireframe: true
+            });
 
-            // Wireframe with a brighter red color
-            const geometry2 = new THREE.IcosahedronGeometry(2.5, 1);
-            const material2 = new THREE.MeshBasicMaterial({ color: 0xF87171, wireframe: true, transparent: true, opacity: 0.3 });
-            const wireframe = new THREE.Mesh(geometry2, material2);
-            mainObject.add(wireframe);
-
-            scene.add(mainObject);
-
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-            scene.add(ambientLight);
-            const pointLight = new THREE.PointLight(0xffffff, 1);
-            pointLight.position.set(5, 5, 5);
-            scene.add(pointLight);
-
+            plane = new THREE.Mesh(geometry, material);
+            scene.add(plane);
+            
             window.addEventListener('resize', onWindowResize, false);
-            document.addEventListener('scroll', handleScroll);
+            document.addEventListener('mousemove', onMouseMove, false);
             animate3D();
         }
 
@@ -304,58 +323,89 @@
             camera.updateProjectionMatrix();
             renderer.setSize(container.offsetWidth, container.offsetHeight);
         }
-
-        function handleScroll() {
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            if (mainObject) {
-                mainObject.rotation.y = scrollPercent * Math.PI * 4; // Increased rotation for longer page
-                mainObject.rotation.x = scrollPercent * Math.PI;
-            }
+        
+        function onMouseMove(event) {
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
         }
 
         function animate3D() {
             requestAnimationFrame(animate3D);
-            if (mainObject) {
-                // Keep a subtle base rotation
-                mainObject.rotation.y += 0.0005;
-            }
+            const elapsedTime = clock.getElapsedTime();
+            plane.material.uniforms.u_time.value = elapsedTime;
+            plane.material.uniforms.u_mouse.value.lerp(mouse, 0.05);
+            plane.rotation.x = 0.2;
+            plane.rotation.y = 0.2;
             renderer.render(scene, camera);
         }
 
-        // --- Smooth Scrolling ---
-        function setupSmoothScrolling() {
-            document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    let target = document.querySelector(this.getAttribute('href'));
-                    if(target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
+        // --- GSAP Animations ---
+        function setupAnimations() {
+            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+            const tl = gsap.timeline();
+            tl.to("#hero-title", { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
+              .to("#hero-subtitle", { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.7")
+              .to("#hero-button", { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.7");
+
+            gsap.utils.toArray('.anim-stagger').forEach(section => {
+                const elems = section.querySelectorAll("h3, h4, p");
+                gsap.from(elems, {
+                    y: 30,
+                    opacity: 0,
+                    stagger: 0.2,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
                     }
                 });
             });
-        }
+            
+            gsap.from('.anim-image', {
+                x: -50,
+                opacity: 0,
+                duration: 1.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '.anim-image',
+                    start: 'top 80%',
+                }
+            });
 
-        // --- Scroll Animation Observer ---
-        function observeSections() {
-            const sections = document.querySelectorAll('.fade-in-section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, { threshold: 0.15 });
-            sections.forEach(section => observer.observe(section));
+            gsap.from('.service-card', {
+                y: 50,
+                opacity: 0,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: '#services',
+                    start: 'top 70%',
+                }
+            });
+            
+             gsap.from('.team-card', {
+                scale: 0.8,
+                opacity: 0,
+                stagger: 0.2,
+                duration: 0.8,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: '#team',
+                    start: 'top 70%',
+                }
+            });
         }
-
-        // --- Event Listeners ---
-        window.addEventListener('DOMContentLoaded', () => {
+        
+        // --- General Setup ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            gsap.to(preloader, { opacity: 0, duration: 0.5, onComplete: () => preloader.style.display = 'none' });
+            
             init3D();
-            initializeFirebase();
-            setupSmoothScrolling();
-            observeSections();
+            setupAnimations();
 
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -364,33 +414,48 @@
                 link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
             });
 
-            // Contact Form
+            document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        gsap.to(window, {duration: 1.5, scrollTo: target, ease: "power2.inOut"});
+                    }
+                });
+            });
+
+            // --- Contact Form Logic ---
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
-            contactForm.addEventListener('submit', async (e) => {
+
+            contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (!db) {
-                     formStatus.innerHTML = '<p class="text-red-400">Backend not connected.</p>';
-                     return;
-                }
-                formStatus.innerHTML = '<p class="text-red-400">Sending...</p>';
-                try {
-                    const collectionPath = `/artifacts/${appId}/users/anonymous/contactSubmissions`;
-                    await addDoc(collection(db, collectionPath), {
-                        name: document.getElementById('name').value,
-                        email: document.getElementById('email').value,
-                        message: document.getElementById('message').value,
-                        submittedAt: serverTimestamp()
-                    });
-                    formStatus.innerHTML = '<p class="text-green-400">Thank you! Your message has been sent.</p>';
-                    contactForm.reset();
-                } catch (error) {
-                    console.error("Error adding document: ", error);
-                    formStatus.innerHTML = '<p class="text-red-400">Failed to send message. Please try again.</p>';
-                }
-                setTimeout(() => { formStatus.innerHTML = ''; }, 4000);
+                formStatus.innerHTML = `<p class="text-blue-600 font-semibold">Thank you for your message!</p>`;
+                contactForm.reset();
+                 setTimeout(() => {
+                    formStatus.innerHTML = '';
+                }, 5000);
             });
         });
     </script>
+    <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnBXZuBBtlkatKRCeagZLcw3szEwjveoE",
+    authDomain: "contact-form-011.firebaseapp.com",
+    projectId: "contact-form-011",
+    storageBucket: "contact-form-011.firebasestorage.app",
+    messagingSenderId: "450325580320",
+    appId: "1:450325580320:web:b7a568175d0bbe82244a45"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
 </body>
 </html>
