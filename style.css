@@ -1,0 +1,287 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+#hero-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  opacity: 0.5;
+}
+#hero-canvas {
+  width: 100%;
+  height: 100%;
+}
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+}
+.content-section {
+  padding: 6rem 1.5rem;
+}
+/* Preloader styles */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f9fafb;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease-out;
+}
+#preloader .loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ffffff;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Reset default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header Bar */
+.navbar {
+  display: flex;
+  top: 0;
+  position: sticky;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  background: #000000;
+  border-bottom: 1px solid #000000;
+  z-index: 999;
+}
+
+/* Logo */
+.logo img {
+  height: 70px; /* increase size */
+  width: auto; /* keeps proportions */
+  cursor: pointer;
+}
+
+/* Navigation Menu */
+.nav-links {
+  flex: 1;
+  text-align: center;
+}
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover {
+  color: #6a6e71;
+}
+/* Black navbar background (if you changed it) */
+.navbar {
+  background: #000;
+}
+
+/* Force social icons to be white in every state */
+.navbar .social-icons a,
+.navbar .social-icons a:link,
+.navbar .social-icons a:visited,
+.navbar .social-icons i {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+/* Hover color (blue) */
+.navbar .social-icons a:hover,
+.navbar .social-icons a:hover i {
+  color: #7494bc !important; /* tweak as you like */
+}
+
+/* If something weird was applied elsewhere */
+.navbar .social-icons i {
+  mix-blend-mode: normal;
+}
+
+/* Hero Section Styling */
+#home {
+  color: white; /* Makes all text inside white by default */
+}
+
+/* Optional: Override specific items if needed */
+#hero-title {
+  color: white; /* Force title to white */
+}
+
+#hero-subtitle {
+  color: white; /* Force subtitle to white */
+}
+
+#hero-button a {
+  background-color: #2563eb; /* blue-600 */
+  color: white; /* Keep button text white */
+}
+
+#hero-button a:hover {
+  background-color: #17181a; /* blue-700 */
+}
+.problem-section {
+  background: #000; /* Dark theme background */
+  color: #fff; /* White text */
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.problem-content {
+  max-width: 800px;
+}
+
+.problem-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.problem-item {
+  margin-bottom: 2rem;
+}
+
+.problem-item h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.problem-item p {
+  font-size: 1rem;
+  color: #ccc; /* Light gray for subtext */
+  line-height: 1.6;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nav-links {
+    text-align: left;
+    margin-top: 10px;
+  }
+  .nav-links a {
+    display: block;
+    margin: 10px 0;
+  }
+  .problem-section {
+    padding: 50px 10px;
+  }
+  .problem-title {
+    font-size: 2rem;
+  }
+} /* Footer Styling */
+footer {
+  background: #000; /* Dark theme background */
+  color: #000000; /* White text */
+  padding: 40px 20px;
+  text-align: center;
+}
+footer a {
+  color: #2563eb; /* blue-600 */
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+/* End of Footer Styling */
+
+/* Section background */
+.services-section {
+  background-color: #000; /* black background */
+  padding: 100px 20px; /* more spacing from other sections */
+  margin-top: 80px; /* pushes section downward */
+  text-align: center;
+  color: #fff;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Title */
+.title h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.title p {
+  color: #3b82f6; /* blue accent */
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+
+/* Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* Service Card */
+.service-card {
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 40px 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Simple upward hover motion */
+.service-card:hover {
+  transform: translateY(-10px); /* move slightly upward */
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* Icons */
+.service-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* Headings */
+.service-card h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+/* Text */
+.service-card p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.6;
+}

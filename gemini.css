@@ -1,0 +1,138 @@
+/* Basic Reset */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav li {
+    margin-left: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+section {
+    padding: 2rem;
+    background-color: #fff;
+    margin-bottom: 2rem;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+}
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Features Tabs */
+.tab-container {
+    margin-top: 1rem;
+}
+
+.tab {
+    background-color: #eee;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tab.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.tab-content {
+    display: none;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Accordion */
+.accordion-item {
+    margin-bottom: 1rem;
+}
+
+.accordion-header {
+    background-color: #eee;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+}
+
+.accordion-content {
+    padding: 1rem;
+    display: none;
+}
+
+.accordion-content.active {
+    display: block;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Basic Responsiveness */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav li {
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+    }
+}

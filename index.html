@@ -10,67 +10,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
-            color: #1f2937;
-            overflow-x: hidden;
-        }
-        #hero-canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 0;
-            opacity: 0.5;
-        }
-        #hero-canvas {
-            width: 100%;
-            height: 100%;
-        }
-        .content-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-        .content-section {
-            padding: 6rem 1.5rem;
-        }
-        /* Preloader styles */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #f9fafb;
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out;
-        }
-        #preloader .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #d1d5db;
-            border-top-color: #3b82f6;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (Latest Version from CDN) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+  
 </head>
 <body class="text-gray-800">
 
     <div id="preloader">
         <div class="loader"></div>
     </div>
+
 
     <!-- This container will hold the 3D animation -->
     <div id="hero-canvas-container">
@@ -79,30 +36,29 @@
 
     <div class="content-wrapper">
         <!-- Header & Navigation -->
-        <header id="header" class="fixed w-full z-20 bg-white/80 backdrop-blur-md border-b border-gray-200/80">
-            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#home" class="nav-link">
-                    <img src="https://placehold.co/150x50/3B82F6/FFFFFF?text=Rehabionix" alt="Rehabionix Logo" class="h-10 w-auto">
-                </a>
-                <nav class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
-                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">About</a>
-                    <a href="#services" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">Services</a>
-                    <a href="#team" class="nav-link text-gray-600 hover:text-blue-600 transition duration-300">Team</a>
-                    <a href="#contact" class="nav-link bg-blue-600 text-white font-medium py-2 px-5 rounded-full hover:bg-blue-700 transition duration-300">Contact</a>
-                </nav>
-                <button id="mobile-menu-button" class="md:hidden flex items-center text-gray-600">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden bg-white/95">
-                <a href="#home" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Home</a>
-                <a href="#about" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">About</a>
-                <a href="#services" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Services</a>
-                <a href="#team" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Team</a>
-                <a href="#contact" class="nav-link block py-3 px-6 text-sm hover:bg-gray-50">Contact</a>
-            </div>
-        </header>
+         <!-- HEADER -->
+<header class="navbar">
+  <!-- Left: Logo -->
+  <div class="logo">
+    <img src="Rehabionix Final Logo.png" alt="Rehabionix Logo">
+  </div>
+
+  <!-- Center: Navigation Menu -->
+  <nav class="nav-links">
+    <button><a href="#home">Home</a></button>
+    <button><a href="#about">About</a></button>
+    <button><a href="#services">Problem</a></button>
+    <button><a href="#team">Team</a></button>
+    <button><a href="#contact">Contact</a></button>
+  </nav>
+
+  <!-- Right: Social Icons -->
+  <div class="social-icons">
+    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.linkedin.com/company/rehabionix/" target="_blank"><i class="fab fa-linkedin"></i></a>
+  </div>
+</header>
 
         <main>
             <!-- Home Section -->
@@ -115,94 +71,305 @@
                     </div>
                 </div>
             </section>
+            <!-- Hero Section -->
+<section class="hero" id="about">
+  <div class="hero-content">
+    <h1>
+      The India’s first <br>
+      soft-robotic device <br>
+      for hand rehabilitation.
+    </h1>
+    <p class="subtitle">
+      Helping patients recover mobility after paralysis with advanced robotics,
+      lifelike movement, and faster rehabilitation outcomes.
+    </p>
+    <div class="hero-buttons">
+      <a href="#patients" class="btn-outline">For Patients</a>
+      <a href="#doctors" class="btn-outline">For Doctors</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="image.imageformat.text50percent.1562089386.gif" alt="Soft Robotic Hand Rehab Device">
+  </div>
+</section>
+
+<style>
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6rem 10%;
+  background: #fff;
+}
+
+.hero-content {
+  max-width: 50%;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-outline {
+  padding: 0.8rem 2rem;
+  border: 1.5px solid #000;
+  text-decoration: none;
+  font-weight: 500;
+  color: #000;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: #000;
+  color: #fff;
+}
+
+.hero-image {
+  max-width: 40%;
+}
+
+.hero-image img {
+  width: 100%;
+  object-fit: contain;
+}
+</style>
+
+
+<!-- Problem Statement Section -->
+<section class="problem-section" id="services">
+  <div class="problem-content">
+    <h2 class="problem-title">Problem Statement</h2>
+
+    <div class="problem-item">
+      <h3>Painful Traditional Therapy</h3>
+      <p>Stroke patients often face painful and ineffective upper limb rehab (BioMed Central).</p>
+    </div>
+
+    <div class="problem-item">
+      <h3>Grip Limitation Observed</h3>
+      <p>At many hospitals, we see that patients get bored with manual rehab and lose motivation.</p>
+    </div>
+
+    <div class="problem-item">
+      <h3>Low Recovery Rate</h3>
+      <p>85% of stroke survivors suffer hand impairment; only 5–20% regain full function (PubMed Central).</p>
+    </div>
+
+    <div class="problem-item">
+      <h3>Unaffordable Tech</h3>
+      <p>Imported rehabilitation devices are prohibitively expensive, making them inaccessible to most Indian rehab centers.</p>
+    </div>
+  </div>
+</section>
+
 
             <!-- All other sections are wrapped for consistent background -->
             <div class="bg-white relative">
-                <!-- About Us Section -->
-                <section id="about" class="content-section overflow-hidden">
-                    <div class="container mx-auto p-8">
-                        <div class="text-center mb-12 anim-stagger">
-                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">About Rehabionix</h3>
-                            <p class="text-blue-700 mt-2">Our Mission is to Revolutionize Recovery.</p>
-                        </div>
-                        <div class="flex flex-col md:flex-row items-center gap-12">
-                            <div class="md:w-1/2 anim-image">
-                                <div class="rounded-lg shadow-2xl overflow-hidden border border-gray-200">
-                                    <img src="https://placehold.co/600x400/FFFFFF/1F2937?text=Our+Facility" alt="Rehabionix Facility" class="w-full h-auto">
-                                </div>
-                            </div>
-                            <div class="md:w-1/2 anim-stagger">
-                                <h4 class="text-2xl font-semibold text-gray-900 mb-4">Who We Are</h4>
-                                <p class="text-gray-600 mb-4">Rehabionix was founded by a team of passionate engineers, doctors, and therapists dedicated to making advanced rehabilitation technology accessible to all. We believe in the power of innovation to overcome physical limitations and restore hope.</p>
-                                <p class="text-gray-600">Our state-of-the-art facility is where we design, build, and test the next generation of therapeutic devices. We are committed to research and development, constantly pushing the boundaries of what's possible in physical therapy.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+              <!-- Who We Are Section -->
+<section class="who-we-are">
+  <div class="content">
+    <h3>REGAIN REVIVE REBUILD</h3>
+    <p>
+      At <strong>Rehabionix</strong>, we are building the next generation of soft-robotic 
+      rehabilitation devices designed to help patients recover hand function after paralysis.  
+      Unlike traditional therapy, our device combines advanced robotics, lifelike movement, 
+      and data-driven recovery to accelerate rehabilitation at a fraction of the cost.  
+      <br><br>
+      Our mission is simple: empower patients, support doctors, and make rehabilitation 
+      smarter, faster, and more accessible to everyone.
+    </p>
+  </div>
+</section>
+
+<style>
+/* Who We Are Section */
+.who-we-are {
+  background: #ffffff;
+  color: #000000;
+  text-align: center;
+  padding: 6rem 15%;
+}
+
+.who-we-are h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #000000;
+  opacity: 0.85;
+}
+
+.who-we-are h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #000000, #000000);
+  background-clip: text;              /* For modern browsers */
+  -webkit-background-clip: text;      /* For Safari/Chrome */
+  -webkit-text-fill-color: transparent; /* Makes gradient visible */
+  color: transparent;                 /* Backup for Firefox */
+}
+
+
+.who-we-are p {
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+</style>
+
                 
                 <!-- Our Technology Section -->
-                <section id="technology" class="content-section bg-gray-50 overflow-hidden">
-                    <div class="container mx-auto">
-                        <div class="text-center mb-12 anim-stagger">
-                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Technology</h3>
-                            <p class="text-blue-700 mt-2">The science behind the recovery.</p>
-                        </div>
-                        <div class="grid md:grid-cols-2 gap-8 items-center">
-                            <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
-                                 <h4 class="text-2xl font-semibold text-gray-900 mb-4">Proprietary Exoskeletons</h4>
-                                 <p class="text-gray-600">Our robotic exoskeletons are designed for comfort and precision. They provide adaptive assistance, challenging patients as they regain strength and mobility. Integrated sensors capture thousands of data points per session, allowing for unparalleled analysis of movement quality.</p>
-                            </div>
-                             <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
-                                 <h4 class="text-2xl font-semibold text-gray-900 mb-4">Immersive VR Worlds</h4>
-                                 <p class="text-gray-600">We turn therapy into an adventure. Our VR scenarios are developed with neuroscientists to maximize engagement and promote neuroplasticity. Patients perform functional tasks in realistic simulations, accelerating the transfer of skills to daily life.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <!-- Capabilities Section -->
+<section id="technology" class="content-section bg-white">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-bold text-gray-900] mb-12">
+      The most advanced <br class="hidden md:block"> capabilities on the market.
+    </h2>
 
-                <!-- Services Section -->
-                <section id="services" class="content-section overflow-hidden">
-                    <div class="container mx-auto">
-                        <div class="text-center mb-12 anim-stagger">
-                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Innovative Services</h3>
-                            <p class="text-blue-700 mt-2">Tailored technologies for a faster, more engaging recovery.</p>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                                <h4 class="text-xl font-bold mb-2 text-gray-900">Robotic-Assisted Therapy</h4>
-                                <p class="text-gray-600">High-repetition, data-driven exercises using our proprietary robotic exoskeletons to rebuild strength and motor control.</p>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                                <h4 class="text-xl font-bold mb-2 text-gray-900">VR Rehabilitation</h4>
-                                <p class="text-gray-600">Immersive virtual environments that make therapy engaging and fun, helping to rewire neural pathways for functional recovery.</p>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-lg shadow-lg border border-gray-100">
-                                <h4 class="text-xl font-bold mb-2 text-gray-900">Personalized Data Analytics</h4>
-                                <p class="text-gray-600">We track progress with precision sensors and provide detailed reports to patients and clinicians, optimizing treatment plans.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Testimonials Section -->
-                <section id="testimonials" class="content-section bg-gray-50 overflow-hidden">
-                    <div class="container mx-auto">
-                        <div class="text-center mb-12 anim-stagger">
-                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Success Stories</h3>
-                            <p class="text-blue-700 mt-2">Hear from those who have experienced the future of rehab.</p>
-                        </div>
-                         <div class="grid md:grid-cols-2 gap-8">
-                             <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
-                                 <p class="text-gray-600 italic mb-4">"After my stroke, I thought I'd never use my arm again. Six weeks with Rehabionix changed everything. The technology is incredible, and the team is so supportive."</p>
-                                 <p class="font-bold text-blue-600">- John D., Stroke Survivor</p>
-                             </div>
-                              <div class="bg-white p-8 rounded-lg shadow-lg anim-stagger">
-                                 <p class="text-gray-600 italic mb-4">"As a physical therapist, I'm blown away by the data Rehabionix provides. It allows me to tailor my programs in ways I never could before. It's a game-changer for the profession."</p>
-                                 <p class="font-bold text-blue-600">- Dr. Sarah Chen, DPT</p>
-                             </div>
-                        </div>
-                    </div>
-                </section>
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+
+      <!-- Feature 1 -->
+      <div class="flex flex-col items-center text-center">
+        <div class="mb-4 text-5xl">👆</div>
+        <h3 class="text-lg font-semibold mb-2">Smart Motion Assistance</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Our device provides controlled extension and flexion cycles through pneumatic or servodriven motion
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="flex flex-col items-center text-center">
+        <div class="mb-4 text-5xl">🎛️</div>
+        <h3 class="text-lg font-semibold mb-2">Personalized Modes</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Rehabionix adapts to each patient’s hand condition and therapy stage, Adjustable angle based on spasticity level
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="flex flex-col items-center text-center">
+        <div class="mb-4 text-5xl">⏱️</div>
+        <h3 class="text-lg font-semibold mb-2">Recovery Speed</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Robotic-assisted therapy improves hand function 2× faster than manual therapy in chronic stroke patients.
+        </p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="flex flex-col items-center text-center">
+        <div class="mb-4 text-5xl">💰</div>
+        <h3 class="text-lg font-semibold mb-2">Affordable & Accessible</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          Projected cost under ₹130,000 — 90% cheaper than imports
+        </p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="flex flex-col items-center text-center">
+        <div class="mb-4 text-5xl">IN</div>
+        <h3 class="text-lg font-semibold mb-2">Made in the India</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          We’re the first company to build robotic hand for rehabilitation in India and can offer fast and effective support.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section">
+  <div class="container">
+    <!-- Title -->
+    <div class="title">
+      <h3>Our Innovative Services</h3>
+      <p>
+        Advanced rehabilitation solutions designed to accelerate recovery and empower lives.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="services-grid">
+      
+      <!-- Service Card -->
+      <div class="service-card">
+        <div class="icon">🤖</div>
+        <h4>Robotic-Assisted Therapy</h4>
+        <p>
+          High-repetition, data-driven exercises with robotic exoskeletons to restore strength and motor control.
+        </p>
+      </div>
+
+      <!-- Service Card -->
+      <div class="service-card">
+        <div class="icon">🕶️</div>
+        <h4>VR Rehabilitation</h4>
+        <p>
+          Immersive VR therapy that rewires neural pathways while keeping patients motivated and engaged.
+        </p>
+      </div>
+
+      <!-- Service Card -->
+      <div class="service-card">
+        <div class="icon">📊</div>
+        <h4>Personalized Data Analytics</h4>
+        <p>
+          Real-time progress tracking with smart sensors, providing detailed insights for patients and clinicians.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Sponsors Section -->
+<section id="sponsors" class="content-section bg-white overflow-hidden py-16">
+  <div class="container mx-auto">
+    <!-- Title -->
+    <div class="text-center mb-12 anim-stagger">
+      <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Our Sponsors</h3>
+      <p class="text-blue-700 mt-2">We are proudly supported by our partners and sponsors.</p>
+    </div>
+
+    <!-- Logos Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-center">
+      <div class="flex justify-center">
+        <img src="acic_1.webp" alt="ACIC VGU" class="h-16 md:h-20 object-contain">
+      </div>
+      <div class="flex justify-center">
+        <img src="logo12.png" alt="VGU" class="h-16 md:h-20 object-contain">
+      </div>
+      <div class="flex justify-center">
+        <img src="sidbi_1 (1).webp" alt="SIDBI" class="h-16 md:h-20 object-contain">
+      </div>
+      <div class="flex justify-center">
+        <img src="dpiit_1.webp" alt="DPIIT" class="h-16 md:h-20 object-contain">
+      </div>
+      <div class="flex justify-center">
+        <img src="startupindia.webp" alt="Startup india" class="h-16 md:h-20 object-contain">
+      </div>
+    </div>
+  </div>
+</section>
 
                 <!-- Team Section -->
                 <section id="team" class="content-section overflow-hidden">
@@ -213,39 +380,20 @@
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                             <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="https://placehold.co/150x150/DBEAFE/1E3A8A?text=CEO" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CEO">
-                                <h4 class="text-xl font-bold text-gray-900">Dr. Aris Thorne</h4>
-                                <p class="text-blue-700">Founder & CEO</p>
+                                <img src="chitra mam.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CEO">
+                                <h4 class="text-xl font-bold text-gray-900">Chitra Banerjee</h4>
+                                <p class="text-blue-700">Founder</p>
                             </div>
                             <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="https://placehold.co/150x150/DBEAFE/1E3A8A?text=CTO" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CTO">
-                                <h4 class="text-xl font-bold text-gray-900">Lena Petrova</h4>
-                                <p class="text-blue-700">Chief Technology Officer</p>
+                                <img src="varun image.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CTO">
+                                <h4 class="text-xl font-bold text-gray-900">Varun Mawani</h4>
+                                <p class="text-blue-700">Chief Executive Officer</p>
                             </div>
                             <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="https://placehold.co/150x150/DBEAFE/1E3A8A?text=CMO" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CMO">
-                                <h4 class="text-xl font-bold text-gray-900">Dr. Kenji Tanaka</h4>
-                                <p class="text-blue-700">Chief Medical Officer</p>
+                                <img src="Sanjeev image(1).jpg" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CMO">
+                                <h4 class="text-xl font-bold text-gray-900">Sanjeev Kumar</h4>
+                                <p class="text-blue-700">Co-founder</p>
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Contact Section -->
-                <section id="contact" class="content-section bg-gray-50 overflow-hidden">
-                    <div class="container mx-auto bg-white rounded-lg shadow-xl p-8 anim-stagger">
-                        <div class="text-center mb-12">
-                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Get In Touch</h3>
-                            <p class="text-blue-700 mt-2">Have questions? We'd love to hear from you.</p>
-                        </div>
-                        <div class="max-w-2xl mx-auto">
-                            <form id="contact-form" class="rounded-lg">
-                                <div class="mb-4"><input type="text" id="name" placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 text-gray-900" required></div>
-                                <div class="mb-4"><input type="email" id="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 text-gray-900" required></div>
-                                <div class="mb-6"><textarea id="message" placeholder="Message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 text-gray-900" required></textarea></div>
-                                <div class="text-center"><button id="submitBtn" type="submit" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 shadow-lg shadow-blue-600/50">Send Message</button></div>
-                            </form>
-                            <div id="form-status" class="text-center mt-4"></div>
                         </div>
                     </div>
                 </section>
@@ -253,9 +401,110 @@
         </main>
 
         <!-- Footer -->
+         <!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <h2 class="footer-title">Join Our Rehabionix Revolution</h2>
+    <p class="footer-subtitle">
+      Sign up with your email address to receive updates on recovery technology and our latest innovations.
+    </p>
+
+    <form class="footer-form">
+      <input type="email" placeholder="Enter your email address" required>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.linkedin.com/company/rehabionix/"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-info"  id="contact">
+      <p>Banerjee House, Gangouri Bazar,<br>
+          Jaipur, Rajasthan, India 302001</p>
+      <p>+91-63671 95990</p>
+      <p><a href="mailto:info@rehabionix.com">info@rehabionix.com</a></p>
+      <p>Business Hours: 9 am – 6 pm IST</p>
+      <p><a href="#">Privacy Policy</a> | <a href="#">Investor Information</a></p>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer {
+  background: #f9f9f9;
+  text-align: center;
+  padding: 54px 24px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-subtitle {
+  color: #000000;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.footer-form {
+  margin: 20px 0;
+}
+
+.footer-form input {
+  padding: 12px;
+  width: 280px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+
+.footer-form button {
+  padding: 12px 25px;
+  margin-left: 10px;
+  border: 1px solid #000000;
+  background: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.footer-form button:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.social-icons {
+  margin: 20px 0;
+}
+
+.social-icons a {
+  font-size: 20px;
+  margin: 0 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.footer-info {
+  color: #000000;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.footer-info a {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+</style>
         <footer class="bg-gray-100 text-gray-600 py-8">
             <div class="container mx-auto px-6 text-center">
-                <p>&copy; 2024 Rehabionix. All Rights Reserved.</p>
+                <p>&copy; 2025 Rehabionix. All Rights Reserved.</p>
             </div>
         </footer>
     </div>
@@ -488,8 +737,33 @@
       formStatus.innerHTML = '';
     }, 5000);
   });
+  
 </script>
+
+
+<!-- ==== Footer Styles (inline or move to your CSS) ==== -->
+<style>
+  .site-footer{
+    background:#0b1020; color:#cfd3df; padding:28px 16px; margin-top:48px
+  }
+  .footer-wrap{max-width:1100px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center}
+  .brand{font-weight:700; letter-spacing:.3px; margin:0}
+  .social{display:flex; gap:16px; align-items:center; justify-content:center}
+  .social a{display:inline-flex; padding:10px; border-radius:999px; background:rgba(255,255,255,0.05); transition:transform .15s ease, background .2s ease}
+  .social a:hover{transform:translateY(-2px); background:rgba(255,255,255,0.12)}
+  .social svg{display:block; fill:#cfd3df}
+  .mini{opacity:.75; font-size:.92rem; margin:0}
+  /* Optional sticky-to-bottom if page is short */
+  html,body{height:100%}
+  body{display:flex; flex-direction:column}
+  .site-footer{margin-top:auto}
+</style>
+
+<!-- Auto-update year -->
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
 
 </body>
 </html>
-
