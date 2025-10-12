@@ -1,824 +1,107 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rehabionix - Soft Robotic Device for hand Rehabilitation</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- GSAP for advanced animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome (Latest Version from CDN) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
-  
-</head>
-<body class="text-gray-800">
-
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-
-
-    <!-- This container will hold the 3D animation -->
-    <div id="hero-canvas-container">
-        <canvas id="hero-canvas"></canvas>
-    </div>
-
-    <div class="content-wrapper">
-        <!-- Header & Navigation -->
-         <!-- HEADER -->
-<header class="navbar">
-  <!-- Left: Logo -->
-  <div class="logo">
-    <img src="Rehabionix Final Logo.png" alt="Rehabionix Logo">
-  </div>
-
-  <!-- Center: Navigation Menu -->
-  <nav class="nav-links">
-    <button><a href="#home">Home</a></button>
-    <button><a href="#about">About</a></button>
-    <button><a href="#services">Problem</a></button>
-    <button><a href="#Solutions">Solutions</a></button>
-    <button><a href="#team">Team</a></button>
-    <button><a href="#contact">Contact</a></button>
-    
-  </nav>
-
-  <!-- Right: Social Icons -->
-  <div class="social-icons">
-    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.linkedin.com/company/rehabionix/" target="_blank"><i class="fab fa-linkedin"></i></a>
-  </div>
-</header>
-
-        <main>
-            <!-- Home Section -->
-            <section id="home" class="min-h-screen flex items-center justify-center text-center px-6">
-                <div>
-                    <h2 id="hero-title" class="text-4xl md:text-6xl font-bold leading-tight mb-4 text-gray-900 opacity-0">Soft robotic Device for hand Rehabilitation</h2>
-                    <p id="hero-subtitle" class="text-lg md:text-xl text-blue-800 mb-8 max-w-3xl mx-auto opacity-0">At Rehabionix, we integrate cutting-edge robotics and virtual reality to create personalized therapy solutions that accelerate recovery and empower lives.</p>
-                    <div id="hero-button" class="opacity-0">
-                        <a href="#Solutions" class="nav-link bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-blue-600/50 inline-block">Explore Our Technology</a>
-                    </div>
-                </div>
-            </section>
-            <!-- Hero Section -->
-<section class="hero" id="about">
-  <div class="hero-content">
-    <h1>
-      Revolutionizing Stroke Recovery with <br>
-      India’s First Soft-Robotic <br>
-      rehabilitation Device.
-    </h1>
-    <p class="subtitle">
-      Helping patients recover mobility after paralysis with advanced robotics,
-      lifelike movement, and faster rehabilitation outcomes.
-    </p>
-    <div class="hero-buttons">
-      <a href="#patients" class="btn-outline">For Patients</a>
-      <a href="#doctors" class="btn-outline">For Doctors</a>
-    </div>
-  </div>
-  <div class="hero-image">
-    <img src="image.imageformat.text50percent.1562089386.gif" alt="Soft Robotic Hand Rehab Device">
-  </div>
-</section>
-
-<style>
-/* Hero Section */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6rem 10%;
-  background: #fff;
-}
-
-.hero-content {
-  max-width: 50%;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-}
-
-.subtitle {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 2rem;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-}
-
-.btn-outline {
-  padding: 0.8rem 2rem;
-  border: 1.5px solid #000;
-  text-decoration: none;
-  font-weight: 500;
-  color: #000;
-  transition: all 0.3s ease;
-}
-
-.btn-outline:hover {
-  background: #000;
-  color: #fff;
-}
-
-.hero-image {
-  max-width: 40%;
-}
-
-.hero-image img {
-  width: 100%;
-  object-fit: contain;
-}
-</style>
-
-
-<!-- Problem Statement Section -->
-<section class="problem-section" id="services">
-  <div class="problem-content">
-    <h2 class="problem-title">Challenges in Hand Rehabilitation</h2>
-
-    <div class="problem-item">
-      <h3>Limitations of Conventional Therapy</h3>
-      <p>Stroke patients often face painful and ineffective upper limb rehab (BioMed Central).</p>
-    </div>
-
-    <div class="problem-item">
-      <h3>Grip Limitation Observed</h3>
-      <p>At many hospitals, we see that patients get bored with manual rehab and lose motivation.</p>
-    </div>
-
-    <div class="problem-item">
-      <h3>Low Recovery Rate</h3>
-      <p>85% of stroke survivors suffer hand impairment; only 5–20% regain full function (PubMed Central).</p>
-    </div>
-
-    <div class="problem-item">
-      <h3>Unaffordable Tech</h3>
-      <p>Imported rehabilitation devices are prohibitively expensive, making them inaccessible to most Indian rehab centers.</p>
-    </div>
-  </div>
-</section>
-
-
-            <!-- All other sections are wrapped for consistent background -->
-            <div class="bg-white relative">
-              <!-- Who We Are Section -->
-<section class="who-we-are">
-  <div class="content">
-    <h3>REGAIN REVIVE REBUILD</h3>
-    <p>
-      At <strong>Rehabionix</strong>, we are building the next generation of soft-robotic 
-      rehabilitation devices designed to help patients recover hand function after paralysis.  
-      Unlike traditional therapy, our device combines advanced robotics, lifelike movement, 
-      and data-driven recovery to accelerate rehabilitation at a fraction of the cost.  
-      <br><br>
-      Our mission is simple: empower patients, support doctors, and make rehabilitation 
-      smarter, faster, and more accessible to everyone.
-    </p>
-  </div>
-</section>
-
-<style>
-/* Who We Are Section */
-.who-we-are {
-  background: #ffffff;
-  color: #000000;
-  text-align: center;
-  padding: 6rem 15%;
-}
-
-.who-we-are h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #000000;
-  opacity: 0.85;
-}
-
-.who-we-are h3 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-  background: linear-gradient(to right, #000000, #000000);
-  background-clip: text;              /* For modern browsers */
-  -webkit-background-clip: text;      /* For Safari/Chrome */
-  -webkit-text-fill-color: transparent; /* Makes gradient visible */
-  color: transparent;                 /* Backup for Firefox */
-}
-
-
-.who-we-are p {
-  font-size: 1rem;
-  line-height: 1.7;
-  max-width: 800px;
-  margin: 0 auto;
-  opacity: 0.9;
-}
-</style>
-
-                
-                <!-- Our Technology Section -->
-                <!-- Capabilities Section -->
-<section id="technology" class="content-section bg-white">
-  <div class="container mx-auto text-center">
-    <h2 class="text-4xl md:text-5xl font-bold text-gray-900] mb-12">
-      The most advanced <br class="hidden md:block"> capabilities on the market.
-    </h2>
-
-    <!-- Features Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
-
-      <!-- Feature 1 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="mb-4 text-5xl">👆</div>
-        <h3 class="text-lg font-semibold mb-2">Smart Motion Assistance</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Our device provides controlled extension and flexion cycles through pneumatic or servodriven motion
-        </p>
-      </div>
-
-      <!-- Feature 2 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="mb-4 text-5xl">🎛️</div>
-        <h3 class="text-lg font-semibold mb-2">Personalized Modes</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Rehabionix adapts to each patient’s hand condition and therapy stage, Adjustable angle based on spasticity level
-        </p>
-      </div>
-
-      <!-- Feature 3 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="mb-4 text-5xl">⏱️</div>
-        <h3 class="text-lg font-semibold mb-2">Recovery Speed</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Robotic-assisted therapy improves hand function 2× faster than manual therapy in chronic stroke patients.
-        </p>
-      </div>
-
-      <!-- Feature 4 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="mb-4 text-5xl">💰</div>
-        <h3 class="text-lg font-semibold mb-2">Affordable & Accessible</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Projected cost under ₹130,000 — 90% cheaper than imports
-        </p>
-      </div>
-
-      <!-- Feature 5 -->
-      <div class="flex flex-col items-center text-center">
-        <div class="mb-4 text-5xl">IN</div>
-        <h3 class="text-lg font-semibold mb-2">Made in the India</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          We’re the first company to build robotic hand for rehabilitation in India and can offer fast and effective support.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Services Section -->
-<section id="Solutions" class="services-section"> 
-  <div class="container">
-    <!-- Title -->
-    <div class="title">
-      <h3>Smart Rehabilitation Solutions</h3>
-      <p>
-        Advanced rehabilitation solutions designed to accelerate recovery and empower lives.
-      </p>
-    </div>
-
-    <!-- Services Grid -->
-    <div class="services-grid">
-      
-      <!-- Service Card -->
-      <div class="service-card">
-        <div class="icon">🤖</div>
-        <h4>Robotic-Assisted Therapy</h4>
-        <p>
-          High-repetition, data-driven exercises with robotic exoskeletons to restore strength and motor control.
-        </p>
-      </div>
-
-      <!-- Service Card -->
-      <div class="service-card">
-        <div class="icon">🕶️</div>
-        <h4>Gaming Therapy</h4>
-        <p>
-          Interactive gaming experiences designed to boost recovery, enhance motor skills, and keep patients motivated throughout their rehabilitation journey.
-        </p>
-      </div>
-
-      <!-- Service Card -->
-      <div class="service-card">
-        <div class="icon">📊</div>
-        <h4>Personalized Data Analytics</h4>
-        <p>
-          Real-time progress tracking with smart sensors, providing detailed insights for patients and clinicians.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-                                <!-- Mission & Vision Section -->
-<section id="mission-vision" class="relative py-20 bg-black text-white">
-  <div class="container mx-auto text-center px-6">
-
-    <!-- Title -->
-    <h2 class="text-4xl md:text-5xl font-bold mb-16">
-    </h2>
-
-    <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-
-      <!-- Mission -->
-      <div class="p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:scale-105 transform transition duration-500">
-        <div class="mb-6 text-6xl">🎯</div>
-        <h3 class="text-2xl font-semibold mb-4">Mission</h3>
-        <p class="text-gray-200 leading-relaxed">
-          To revolutionize rehabilitation with advanced soft-robotic solutions that are 
-          affordable, accessible, and effective — empowering patients, supporting doctors, 
-          and accelerating recovery journeys worldwide.
-        </p>
-      </div>
-
-      <!-- Vision -->
-      <div class="p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 hover:scale-105 transform transition duration-500">
-        <div class="mb-6 text-6xl">🌍</div>
-        <h3 class="text-2xl font-semibold mb-4">Vision</h3>
-        <p class="text-gray-200 leading-relaxed">
-          To become a global leader in rehabilitation technology, ensuring every patient — 
-          regardless of location or background — can access innovative, pain-free, 
-          and data-driven recovery solutions that restore independence and dignity.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- Sponsors Section -->
-<section id="sponsors" class="content-section bg-white overflow-hidden py-16">
-  <div class="container mx-auto">
-    <!-- Title -->
-    <div class="text-center mb-12 anim-stagger">
-      <h3 class="text-3xl md:text-4xl font-bold text-gray-900">In Association With</h3>
-      <p class="text-blue-700 mt-2">We’re proud to be associated with leading organizations</p>
-    </div>
-
-    <!-- Logos Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-center">
-      <div class="flex justify-center">
-        <img src="acic_1.webp" alt="ACIC VGU" class="h-16 md:h-20 object-contain">
-      </div>
-      <div class="flex justify-center">
-        <img src="logo12.png" alt="VGU" class="h-16 md:h-20 object-contain">
-      </div>
-      <div class="flex justify-center">
-        <img src="sidbi_1 (1).webp" alt="SIDBI" class="h-16 md:h-20 object-contain">
-      </div>
-      <div class="flex justify-center">
-        <img src="dpiit_1.webp" alt="DPIIT" class="h-16 md:h-20 object-contain">
-      </div>
-      <div class="flex justify-center">
-        <img src="i start logo.png" alt="iStart" class="h-16 md:h-20 object-contain">
-      </div>
-    </div>
-  </div>
-</section>
-                <!-- Team Section -->
-                <section id="team" class="content-section overflow-hidden">
-                    <div class="container mx-auto">
-                        <div class="text-center mb-12 anim-stagger">
-                            <h3 class="text-3xl md:text-4xl font-bold text-gray-900">Meet Our Team</h3>
-                            <p class="text-blue-700 mt-2">The minds behind the mission.</p>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                            
-                            <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="varunimage.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CTO">
-                                <h4 class="text-xl font-bold text-gray-900">Varun Mawani</h4>
-                                <p class="text-blue-700">Chief Executive Officer</p>
-                            </div>
-                            <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="chitra image.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CEO">
-                                <h4 class="text-xl font-bold text-gray-900">Chitra Banerjee</h4>
-                                <p class="text-blue-700">Founder</p>
-                            </div>
-                            <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="sanjeev image.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CMO">
-                                <h4 class="text-xl font-bold text-gray-900">Sanjeev Kumar</h4>
-                                <p class="text-blue-700">Co-founder</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-
-        <!-- Footer -->
-         <!-- Footer Section -->
-<footer class="footer">
-  <div class="footer-container">
-    <h2 class="footer-title">Join Our Rehabionix Revolution</h2>
-    <p class="footer-subtitle">
-      Sign up with your email address to receive updates on recovery technology and our latest innovations.
-    </p>
-
-    <form class="footer-form">
-      <input type="email" placeholder="Enter your email address" required>
-      <button type="submit">Sign Up</button>
-    </form>
-
-    <!-- Social Icons -->
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.linkedin.com/company/rehabionix/"><i class="fab fa-linkedin"></i></a>
-    </div>
-
-    <!-- Contact Info -->
-    <div class="footer-info"  id="contact">
-      <p>Banerjee House, Gangouri Bazar,<br>
-          Jaipur, Rajasthan, India 302001</p>
-      <p>+91-63671 95990</p>
-      <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@rehabionix.com" target="_blank">contact@rehabionix.com
-</a></p>
-      <p>Business Hours: 9 am – 6 pm IST</p>
-      <p><a href="#">Privacy Policy</a> | <a href="#">Investor Information</a></p>
-    </div>
-  </div>
-</footer>
-<style>
-  .footer {
-  background: #f9f9f9;
-  text-align: center;
-  padding: 54px 24px;
-  font-family: Arial, sans-serif;
-}
-
-.footer-title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.footer-subtitle {
-  color: #000000;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.footer-form {
-  margin: 20px 0;
-}
-
-.footer-form input {
-  padding: 12px;
-  width: 280px;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-}
-
-.footer-form button {
-  padding: 12px 25px;
-  margin-left: 10px;
-  border: 1px solid #000000;
-  background: #fff;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.footer-form button:hover {
-  background: #000000;
-  color: #ffffff;
-}
-
-.social-icons {
-  margin: 20px 0;
-}
-
-.social-icons a {
-  font-size: 20px;
-  margin: 0 10px;
-  color: #000;
-  text-decoration: none;
-}
-
-.footer-info {
-  color: #000000;
-  font-size: 14px;
-  margin-top: 20px;
-}
-
-.footer-info a {
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-</style>
-        <footer class="bg-gray-100 text-gray-600 py-8">
-            <div class="container mx-auto px-6 text-center">
-                <p>&copy; 2025 Rehabionix. All Rights Reserved.</p>
-            </div>
-        </footer>
-    </div>
-
-    <script type="module">
-        // --- Three.js Hero Animation ---
-        let scene, camera, renderer, plane, clock;
-        const mouse = new THREE.Vector2();
-
-        const vertexShader = `
-            uniform float u_time;
-            uniform vec2 u_mouse;
-            varying vec2 vUv;
-            void main() {
-                vUv = uv;
-                vec3 pos = position;
-                float dist = distance(vec2(pos.x, pos.y), u_mouse);
-                pos.z += sin(pos.x * 10.0 + u_time) * 0.1;
-                pos.z += sin(pos.y * 10.0 + u_time) * 0.1;
-                pos.z += sin(dist * 10.0 - u_time) * 0.1;
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-            }
-        `;
-
-        const fragmentShader = `
-            uniform float u_time;
-            varying vec2 vUv;
-            void main() {
-                gl_FragColor = vec4(mix(vec3(0.2, 0.5, 0.9), vec3(0.9, 0.2, 0.5), vUv.x + vUv.y), 1.0);
-            }
-        `;
-        
-        function init3D() {
-            const container = document.getElementById('hero-canvas-container');
-            scene = new THREE.Scene();
-            clock = new THREE.Clock();
-            camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
-            camera.position.z = 2;
-
-            renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true, antialias: true });
-            renderer.setSize(container.offsetWidth, container.offsetHeight);
-
-            const geometry = new THREE.PlaneGeometry(5, 5, 50, 50);
-            const material = new THREE.ShaderMaterial({
-                uniforms: {
-                    u_time: { value: 0.0 },
-                    u_mouse: { value: new THREE.Vector2(0, 0) }
-                },
-                vertexShader,
-                fragmentShader,
-                wireframe: true
-            });
-
-            plane = new THREE.Mesh(geometry, material);
-            scene.add(plane);
-            
-            window.addEventListener('resize', onWindowResize, false);
-            document.addEventListener('mousemove', onMouseMove, false);
-            animate3D();
-        }
-
-        function onWindowResize() {
-            const container = document.getElementById('hero-canvas-container');
-            camera.aspect = container.offsetWidth / container.offsetHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.offsetWidth, container.offsetHeight);
-        }
-        
-        function onMouseMove(event) {
-            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-        }
-
-        function animate3D() {
-            requestAnimationFrame(animate3D);
-            const elapsedTime = clock.getElapsedTime();
-            plane.material.uniforms.u_time.value = elapsedTime;
-            plane.material.uniforms.u_mouse.value.lerp(mouse, 0.05);
-            plane.rotation.x = 0.2;
-            plane.rotation.y = 0.2;
-            renderer.render(scene, camera);
-        }
-
-        // --- GSAP Animations ---
-        function setupAnimations() {
-            gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-            const tl = gsap.timeline();
-            tl.to("#hero-title", { opacity: 1, y: 0, duration: 1, ease: 'power3.out' })
-              .to("#hero-subtitle", { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.7")
-              .to("#hero-button", { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.7");
-
-            gsap.utils.toArray('.anim-stagger').forEach(section => {
-                const elems = section.querySelectorAll("h3, h4, p");
-                gsap.from(elems, {
-                    y: 30,
-                    opacity: 0,
-                    stagger: 0.2,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 80%',
-                    }
-                });
-            });
-            
-            gsap.from('.anim-image', {
-                x: -50,
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.anim-image',
-                    start: 'top 80%',
-                }
-            });
-
-            gsap.from('.service-card', {
-                y: 50,
-                opacity: 0,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '#services',
-                    start: 'top 70%',
-                }
-            });
-            
-             gsap.from('.team-card', {
-                scale: 0.8,
-                opacity: 0,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: 'back.out(1.7)',
-                scrollTrigger: {
-                    trigger: '#team',
-                    start: 'top 70%',
-                }
-            });
-        }
-        
-        // --- General Setup ---
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            gsap.to(preloader, { opacity: 0, duration: 0.5, onComplete: () => preloader.style.display = 'none' });
-            
-            init3D();
-            setupAnimations();
-
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            document.querySelectorAll('#mobile-menu a.nav-link').forEach(link => {
-                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-            });
-
-            document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    let target = document.querySelector(this.getAttribute('href'));
-                    if(target) {
-                        gsap.to(window, {duration: 1.5, scrollTo: target, ease: "power2.inOut"});
-                    }
-                });
-            });
-
-            // --- Contact Form Logic ---
-            const contactForm = document.getElementById('contact-form');
-            const formStatus = document.getElementById('form-status');
-
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                formStatus.innerHTML = `<p class="text-blue-600 font-semibold">Thank you for your message!</p>`;
-                contactForm.reset();
-                 setTimeout(() => {
-                    formStatus.innerHTML = '';
-                }, 5000);
-            });
-        });
-    </script>
-    <script type="module">
-  // Import Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
-
-  // Firebase config (yours is correct)
-  const firebaseConfig = {
-    apiKey: "AIzaSyDnBXZuBBtlkatKRCeagZLcw3szEwjveoE",
-    authDomain: "contact-form-011.firebaseapp.com",
-    projectId: "contact-form-011",
-    storageBucket: "contact-form-011.appspot.com",
-    messagingSenderId: "450325580320",
-    appId: "1:450325580320:web:b7a568175d0bbe82244a45"
-  };
-
-  // Initialize Firebase + Firestore
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Contact form submit handler
-  const contactForm = document.getElementById("contact-form");
-  const formStatus = document.getElementById("form-status");
-
-  contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-
-    try {
-      await addDoc(collection(db, "contacts"), {
-        name,
-        email,
-        message,
-        timestamp: new Date()
-      });
-
-      formStatus.innerHTML = `<p class="text-green-600 font-semibold">✅ Message sent successfully!</p>`;
-      contactForm.reset();
-
-    } catch (error) {
-      console.error("❌ Error writing document: ", error);
-      formStatus.innerHTML = `<p class="text-red-600 font-semibold">Error sending message. Try again.</p>`;
-    }
-
-    setTimeout(() => {
-      formStatus.innerHTML = '';
-    }, 5000);
-  });
-  
-</script>
-
-
-<!-- ==== Footer Styles (inline or move to your CSS) ==== -->
-<style>
-  .site-footer{
-    background:#0b1020; color:#cfd3df; padding:28px 16px; margin-top:48px
-  }
-  .footer-wrap{max-width:1100px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center}
-  .brand{font-weight:700; letter-spacing:.3px; margin:0}
-  .social{display:flex; gap:16px; align-items:center; justify-content:center}
-  .social a{display:inline-flex; padding:10px; border-radius:999px; background:rgba(255,255,255,0.05); transition:transform .15s ease, background .2s ease}
-  .social a:hover{transform:translateY(-2px); background:rgba(255,255,255,0.12)}
-  .social svg{display:block; fill:#cfd3df}
-  .mini{opacity:.75; font-size:.92rem; margin:0}
-  /* Optional sticky-to-bottom if page is short */
-  html,body{height:100%}
-  body{display:flex; flex-direction:column}
-  .site-footer{margin-top:auto}
-</style>
-
-<!-- Auto-update year -->
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+402|    font-size: 1.5rem;
+403|  }
+404|  
+405|  .who-we-are h3 {
+406|    font-size: 1.5rem;
+407|  }
+408|  
+409|  .title h3 {
+410|    font-size: 1.5rem;
+411|  }
+412|  
+413|  .service-card {
+414|    padding: 25px 15px;
+415|  }
+416|  
+417|  .nav-links {
+418|    width: 85%;
+419|  }
+420|} /* Footer Styling */
+421|footer {
+422|  background: #000; /* Dark theme background */
+423|  color: #000000; /* White text */
+424|  padding: 40px 20px;
+425|  text-align: center;
+426|}
+427|footer a {
+428|  color: #2563eb; /* blue-600 */
+429|  text-decoration: none;
+430|}
+431|footer a:hover {
+432|  text-decoration: underline;
+433|}
+434|/* End of Footer Styling */
+435|
+436|/* Section background */
+437|.services-section {
+438|  background-color: #000; /* black background */
+439|  padding: 100px 20px; /* more spacing from other sections */
+440|  margin-top: 80px; /* pushes section downward */
+441|  text-align: center;
+442|  color: #fff;
+443|}
+444|
+445|/* Container */
+446|.container {
+447|  max-width: 1200px;
+448|  margin: 0 auto;
+449|}
+450|
+451|/* Title */
+452|.title h3 {
+453|  font-size: 2.5rem;
+454|  font-weight: 800;
+455|  margin-bottom: 15px;
+456|  color: #fff;
+457|}
+458|
+459|.title p {
+460|  color: #3b82f6; /* blue accent */
+461|  font-size: 1.2rem;
+462|  margin-bottom: 50px;
+463|}
+464|
+465|/* Grid */
+466|.services-grid {
+467|  display: grid;
+468|  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+469|  gap: 30px;
+470|}
+471|
+472|/* Service Card */
+473|.service-card {
+474|  background-color: #111;
+475|  border: 1px solid #333;
+476|  border-radius: 16px;
+477|  padding: 40px 20px;
+478|  transition: transform 0.3s ease, box-shadow 0.3s ease;
+479|  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+480|}
+481|
+482|/* Simple upward hover motion */
+483|.service-card:hover {
+484|  transform: translateY(-10px); /* move slightly upward */
+485|  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+486|}
+487|
+488|/* Icons */
+489|.service-card .icon {
+490|  font-size: 2.5rem;
+491|  margin-bottom: 20px;
+492|}
+493|
+494|/* Headings */
+495|.service-card h4 {
+496|  font-size: 1.5rem;
+497|  font-weight: 700;
+498|  color: #fff;
+499|  margin-bottom: 15px;
+500|}
+501|
+502|/* Text */
+503|.service-card p {
+504|  font-size: 1rem;
+505|  color: #ccc;
+506|  line-height: 1.6;
+507|}
+508|
