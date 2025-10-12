@@ -1,107 +1,213 @@
-402|    font-size: 1.5rem;
-403|  }
-404|  
-405|  .who-we-are h3 {
-406|    font-size: 1.5rem;
-407|  }
-408|  
-409|  .title h3 {
-410|    font-size: 1.5rem;
-411|  }
-412|  
-413|  .service-card {
-414|    padding: 25px 15px;
-415|  }
-416|  
-417|  .nav-links {
-418|    width: 85%;
-419|  }
-420|} /* Footer Styling */
-421|footer {
-422|  background: #000; /* Dark theme background */
-423|  color: #000000; /* White text */
-424|  padding: 40px 20px;
-425|  text-align: center;
-426|}
-427|footer a {
-428|  color: #2563eb; /* blue-600 */
-429|  text-decoration: none;
-430|}
-431|footer a:hover {
-432|  text-decoration: underline;
-433|}
-434|/* End of Footer Styling */
-435|
-436|/* Section background */
-437|.services-section {
-438|  background-color: #000; /* black background */
-439|  padding: 100px 20px; /* more spacing from other sections */
-440|  margin-top: 80px; /* pushes section downward */
-441|  text-align: center;
-442|  color: #fff;
-443|}
-444|
-445|/* Container */
-446|.container {
-447|  max-width: 1200px;
-448|  margin: 0 auto;
-449|}
-450|
-451|/* Title */
-452|.title h3 {
-453|  font-size: 2.5rem;
-454|  font-weight: 800;
-455|  margin-bottom: 15px;
-456|  color: #fff;
-457|}
-458|
-459|.title p {
-460|  color: #3b82f6; /* blue accent */
-461|  font-size: 1.2rem;
-462|  margin-bottom: 50px;
-463|}
-464|
-465|/* Grid */
-466|.services-grid {
-467|  display: grid;
-468|  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-469|  gap: 30px;
-470|}
-471|
-472|/* Service Card */
-473|.service-card {
-474|  background-color: #111;
-475|  border: 1px solid #333;
-476|  border-radius: 16px;
-477|  padding: 40px 20px;
-478|  transition: transform 0.3s ease, box-shadow 0.3s ease;
-479|  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-480|}
-481|
-482|/* Simple upward hover motion */
-483|.service-card:hover {
-484|  transform: translateY(-10px); /* move slightly upward */
-485|  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
-486|}
-487|
-488|/* Icons */
-489|.service-card .icon {
-490|  font-size: 2.5rem;
-491|  margin-bottom: 20px;
-492|}
-493|
-494|/* Headings */
-495|.service-card h4 {
-496|  font-size: 1.5rem;
-497|  font-weight: 700;
-498|  color: #fff;
-499|  margin-bottom: 15px;
-500|}
-501|
-502|/* Text */
-503|.service-card p {
-504|  font-size: 1rem;
-505|  color: #ccc;
-506|  line-height: 1.6;
-507|}
-508|
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehabionix - Soft Robotic Device for hand Rehabilitation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome (Latest Version from CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="text-gray-800">
+
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+
+<!-- This container will hold the 3D animation -->
+<div id="hero-canvas-container">
+    <canvas id="hero-canvas"></canvas>
+</div>
+
+<div class="content-wrapper">
+    <!-- Header & Navigation -->
+    <!-- HEADER -->
+    <header class="navbar">
+        <!-- Left: Logo -->
+        <div class="logo">
+            <img src="Rehabionix Final Logo.png" alt="Rehabionix Logo">
+        </div>
+
+        <!-- Center: Navigation Menu -->
+        <nav class="nav-links" id="navMenu">
+            <button><a href="#home">Home</a></button>
+            <button><a href="#about">About</a></button>
+            <button><a href="#services">Problem</a></button>
+            <button><a href="#Solutions">Solutions</a></button>
+            <button><a href="#team">Team</a></button>
+            <button><a href="#contact">Contact</a></button>
+        </nav>
+
+        <!-- Right: Social Icons -->
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/company/rehabionix/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center text-center px-6">
+            <div>
+                <h2 id="hero-title" class="text-4xl md:text-6xl font-bold leading-tight mb-4 text-gray-900 opacity-0">
+                    Soft robotic Device for hand Rehabilitation
+                </h2>
+                <p id="hero-subtitle" class="text-lg md:text-xl text-blue-800 mb-8 max-w-3xl mx-auto opacity-0">
+                    At Rehabionix, we integrate cutting-edge robotics and virtual reality to create personalized therapy solutions that accelerate recovery and empower lives.
+                </p>
+                <div id="hero-button" class="opacity-0">
+                    <a href="#Solutions" class="nav-link bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 shadow-lg shadow-blue-600/50 inline-block">Explore Our Technology</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="hero-content">
+              <div class="problem-item">
+                    <h3>Unaffordable Tech</h3>
+                    <p>Imported rehabilitation devices are prohibitively expensive, making them inaccessible to most Indian rehab centers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who We Are Section -->
+        <section class="who-we-are">
+            <div class="content">
+                <h3>REGAIN REVIVE REBUILD</h3>
+                <p>
+                    At <strong>Rehabionix</strong>, we are building the next generation of soft-robotic 
+                    rehabilitation devices designed to help patients recover hand function after paralysis.  
+                    Unlike traditional therapy, our device combines advanced robotics, lifelike movement, 
+                    and data-driven recovery to accelerate rehabilitation at a fraction of the cost.  
+                    <br><br>
+                    Our mission is simple: empower patients, support doctors, and make rehabilitation 
+                    smarter, faster, and more accessible to everyone.
+                </p>
+            </div>
+        </section>
+
+        <style>
+            /* Who We Are Section */
+            .who-we-are
+{
+background: #ffffff;
+color: #000000;
+text-align: center;
+padding: 6rem 15%;
+}
+.who-we-are h2 {
+font-size: 2rem;
+font-weight: 600;
+margin-bottom: 1rem;
+color: #000000;
+opacity: 0.85;
+}
+.who-we-are h3 {
+font-size: 2.5rem;
+font-weight: 700;
+margin-bottom: 2rem;
+background: linear-gradient(to right, #000000, #000000);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
+}
+.who-we-are p {
+font-size: 1rem;
+line-height: 1.7;
+max-width: 800px;
+margin: 0 auto;
+opacity: 0.9;
+}
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .who-we-are {
+                padding: 3rem 5%;
+            }
+            .who-we-are h3 {
+                font-size: 1.8rem;
+            }
+            .who-we-are p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+
+    <!-- Our Technology Section -->
+    <section id="technology" class="content-section bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-12">
+                The most advanced <br class="hidden md:block"> capabilities on the market.
+            </h2>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-10">
+
+                <!-- Feature 1 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-4 text-5xl">👆</div>
+                    <h3 class="text-lg font-semibold mb-2">Smart Motion Assistance</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Our device provides controlled extension and flexion cycles through pneumatic or servodriven motion
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-4 text-5xl">🎛️</div>
+                    <h3 class="text-lg font-semibold mb-2">Personalized Modes</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Rehabionix adapts to each patient’s hand condition and therapy stage, Adjustable angle based on spasticity level
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-4 text-5xl">⏱️</div>
+                    <h3 class="text-lg font-semibold mb-2">Recovery Speed</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Robotic-assisted therapy improves hand function 2× faster than manual therapy in chronic stroke patients.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+              <div class="flex flex-col items-center text-center">
+                    <div class="mb-4 text-5xl">💰</div>
+                    <h3 class="text-lg font-semibold mb-2">Affordable & Accessible</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Projected cost under ₹130,000 — 90% cheaper than imports
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="mb-4 text-5xl">IN</div>
+                    <h3 class="text-lg font-semibold mb-2">Made in the India</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        We’re the first company to build robotic hand for rehabilitation in India and can offer fast and effective support.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
