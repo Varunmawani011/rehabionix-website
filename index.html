@@ -10,14 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome (Latest Version from CDN) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
   
@@ -40,11 +36,18 @@
 <header class="navbar">
   <!-- Left: Logo -->
   <div class="logo">
-    <img src="Rehabionix Final Logo.png" alt="Rehabionix Logo">
+    <img src="Rehabionix Final Logo.svg" alt="Rehabionix Logo" loading="eager" class="logo-svg">
   </div>
 
+  <!-- Mobile Hamburger -->
+  <button class="hamburger" id="hamburger-menu" aria-label="Open navigation menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <!-- Center: Navigation Menu -->
-  <nav class="nav-links">
+  <nav class="nav-links" id="nav-menu">
     <button><a href="#home">Home</a></button>
     <button><a href="#about">About</a></button>
     <button><a href="#services">Problem</a></button>
@@ -91,7 +94,7 @@
     </div>
   </div>
   <div class="hero-image">
-    <img src="image.imageformat.text50percent.1562089386.gif" alt="Soft Robotic Hand Rehab Device">
+    <img src="image.imageformat.text50percent.1562089386.gif" alt="Soft Robotic Hand Rehab Device" loading="lazy">
   </div>
 </section>
 
@@ -391,19 +394,19 @@
     <!-- Logos Grid -->
     <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-center">
       <div class="flex justify-center">
-        <img src="acic_1.webp" alt="ACIC VGU" class="h-16 md:h-20 object-contain">
+        <img src="acic_1.webp" alt="ACIC VGU" class="h-16 md:h-20 object-contain" loading="lazy">
       </div>
       <div class="flex justify-center">
-        <img src="logo12.png" alt="VGU" class="h-16 md:h-20 object-contain">
+        <img src="logo12.png" alt="VGU" class="h-16 md:h-20 object-contain" loading="lazy">
       </div>
       <div class="flex justify-center">
-        <img src="sidbi_1 (1).webp" alt="SIDBI" class="h-16 md:h-20 object-contain">
+        <img src="sidbi_1 (1).webp" alt="SIDBI" class="h-16 md:h-20 object-contain" loading="lazy">
       </div>
       <div class="flex justify-center">
-        <img src="dpiit_1.webp" alt="DPIIT" class="h-16 md:h-20 object-contain">
+        <img src="dpiit_1.webp" alt="DPIIT" class="h-16 md:h-20 object-contain" loading="lazy">
       </div>
       <div class="flex justify-center">
-        <img src="i start logo.png" alt="iStart" class="h-16 md:h-20 object-contain">
+        <img src="i start logo.png" alt="iStart" class="h-16 md:h-20 object-contain" loading="lazy">
       </div>
     </div>
   </div>
@@ -418,17 +421,17 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                             
                             <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="varunimage.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CTO">
+                                <img src="varunimage.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CEO" loading="lazy">
                                 <h4 class="text-xl font-bold text-gray-900">Varun Mawani</h4>
                                 <p class="text-blue-700">Chief Executive Officer</p>
                             </div>
                             <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="chitra image.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CEO">
+                                <img src="chitra image.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="Founder" loading="lazy">
                                 <h4 class="text-xl font-bold text-gray-900">Chitra Banerjee</h4>
                                 <p class="text-blue-700">Founder</p>
                             </div>
                             <div class="team-card bg-white text-center p-8 rounded-lg shadow-lg">
-                                <img src="sanjeev image.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="CMO">
+                                <img src="sanjeev image.png" class="w-32 h-32 rounded-full mx-auto mb-4 border-2 border-blue-200" alt="Co-founder" loading="lazy">
                                 <h4 class="text-xl font-bold text-gray-900">Sanjeev Kumar</h4>
                                 <p class="text-blue-700">Co-founder</p>
                             </div>
@@ -505,6 +508,7 @@
 .footer-form button {
   padding: 12px 25px;
   margin-left: 10px;
+  width: 120px;
   border: 1px solid #000000;
   background: #fff;
   cursor: pointer;
@@ -518,7 +522,7 @@
 }
 
 .social-icons {
-  margin: 20px 0;
+  margin: 20px 280px;
 }
 
 .social-icons a {
@@ -549,6 +553,9 @@
     </div>
 
     <script type="module">
+        // Detect mobile for performance optimization
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        
         // --- Three.js Hero Animation ---
         let scene, camera, renderer, plane, clock;
         const mouse = new THREE.Vector2();
@@ -584,9 +591,11 @@
             camera.position.z = 2;
 
             renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('hero-canvas'), alpha: true, antialias: true });
+          renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2));
             renderer.setSize(container.offsetWidth, container.offsetHeight);
 
-            const geometry = new THREE.PlaneGeometry(5, 5, 50, 50);
+          const segments = isMobile ? 24 : 50;
+          const geometry = new THREE.PlaneGeometry(5, 5, segments, segments);
             const material = new THREE.ShaderMaterial({
                 uniforms: {
                     u_time: { value: 0.0 },
@@ -695,12 +704,23 @@
             init3D();
             setupAnimations();
 
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-            document.querySelectorAll('#mobile-menu a.nav-link').forEach(link => {
-                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+          const hamburger = document.getElementById('hamburger-menu');
+          const navMenu = document.getElementById('nav-menu');
+          if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+              const isOpen = navMenu.classList.toggle('active');
+              hamburger.classList.toggle('active', isOpen);
+              hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+              link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+              });
+            });
+          }
 
             document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -716,14 +736,16 @@
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
 
-            contactForm.addEventListener('submit', (e) => {
+            if (contactForm && formStatus) {
+              contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 formStatus.innerHTML = `<p class="text-blue-600 font-semibold">Thank you for your message!</p>`;
                 contactForm.reset();
-                 setTimeout(() => {
-                    formStatus.innerHTML = '';
+                setTimeout(() => {
+                  formStatus.innerHTML = '';
                 }, 5000);
-            });
+              });
+            }
         });
     </script>
     <script type="module">
@@ -749,6 +771,7 @@
   const contactForm = document.getElementById("contact-form");
   const formStatus = document.getElementById("form-status");
 
+  if (contactForm && formStatus) {
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -776,6 +799,7 @@
       formStatus.innerHTML = '';
     }, 5000);
   });
+  }
   
 </script>
 
