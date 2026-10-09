@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 
   
 </head>
@@ -94,7 +97,7 @@
     </div>
   </div>
   <div class="hero-image">
-    <img src="image.imageformat.text50percent.1562089386.gif" alt="Soft Robotic Hand Rehab Device" loading="lazy">
+    <img src="Product Demo Presentation.png" alt="Soft Robotic Hand Rehab Device" loading="lazy">
   </div>
 </section>
 
@@ -445,19 +448,22 @@
          <!-- Footer Section -->
 <footer class="footer">
   <div class="footer-container">
-    <h2 class="footer-title">Join Our Rehabionix Revolution</h2>
-    <p class="footer-subtitle">
-      Sign up with your email address to receive updates on recovery technology and our latest innovations.
-    </p>
-
-    <form class="footer-form">
-      <input type="email" placeholder="Enter your email address" required>
-      <button type="submit">Sign Up</button>
-    </form>
+    <section class="contact-form-section" aria-labelledby="contact-form-title">
+      <div class="contact-form-card">
+        <h2 class="contact-form-title" id="contact-form-title">Contact Us</h2>
+        <form class="contact-form" id="contact-emailjs-form">
+          <input type="text" name="name" placeholder="Name" autocomplete="name" required>
+          <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+          <textarea name="message" placeholder="Message" rows="4" required></textarea>
+          <button type="submit" id="contact-emailjs-submit">Submit</button>
+          <p id="contact-emailjs-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
 
     <!-- Social Icons -->
     <div class="social-icons">
-      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.instagram.com/rehabionix?igsi=MXFid3lrdGkzbDFhOQ%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
       <a href="#"><i class="fab fa-youtube"></i></a>
       <a href="https://www.linkedin.com/company/rehabionix/"><i class="fab fa-linkedin"></i></a>
     </div>
@@ -838,9 +844,130 @@
   .site-footer{margin-top:auto}
 </style>
 
-<!-- Auto-update year -->
+<style>
+  /* Contact form replacing the newsletter signup; scoped to this section. */
+  .contact-form-section {
+    background: linear-gradient(110deg, #ffff, #ffff);
+    padding: 10px 10px;
+    border-radius: 12px;
+    margin: 0 auto 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .contact-form-card {
+    width: min(100%, 500px);
+    margin: 0 auto;
+    padding: clamp(10px, 6vw, 10px) clamp(10px, 5.5vw, 10px);
+    background: #fff;
+    border-radius: 13px;
+    box-sizing: border-box;
+  }
+  .contact-form-title {
+    color: #333;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin: 0 0 64px;
+    text-align: center;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 3px solid #b0b0b0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0px 0;
+    color: #333;
+    font: inherit;
+    font-size: 17px;
+    outline: none;
+  }
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 50px;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-bottom-color: #f6f1f1 }
+  .contact-form button {
+    align-self: center;
+    width: min(100%, 100px);
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 10px;
+    background: linear-gradient(110deg, #00677c, #27869a);
+    color: #fff;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .contact-form button:disabled { opacity: .65; cursor: wait; }
+  #contact-emailjs-status { margin: -20px 0 0; min-height: 1.4em; overflow-wrap: anywhere; }
+  @media (max-width: 600px) {
+    .contact-form-section { padding: 10px 10px; }
+    .contact-form-title { margin-bottom: 10px; }
+    .contact-form { gap: 10px; }
+  }
+</style>
+
+<!-- Auto-update year and EmailJS contact form -->
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // Auto-update the year only if an element with id="year" exists.
+  const yearElement = document.getElementById("year");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+  // EmailJS credentials
+  const EMAILJS_PUBLIC_KEY = "DsNULo5Hj2gT7UYCM";
+  const EMAILJS_SERVICE_ID = "service_4pzcq8d";
+  const EMAILJS_TEMPLATE_ID = "template_0mo5j7m";
+
+  // Initialize EmailJS after its SDK has loaded.
+  if (typeof emailjs !== "undefined") {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+    const emailForm = document.getElementById("contact-emailjs-form");
+    const emailStatus = document.getElementById("contact-emailjs-status");
+    const emailButton = document.getElementById("contact-emailjs-submit");
+
+    if (emailForm && emailStatus && emailButton) {
+      emailForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        emailButton.disabled = true;
+        emailButton.textContent = "Sending...";
+        emailStatus.textContent = "";
+
+        try {
+          await emailjs.sendForm(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            emailForm
+          );
+
+          emailStatus.textContent = "Thank you! Your message has been sent successfully.";
+          emailForm.reset();
+        } catch (error) {
+          console.error("EmailJS error:", error);
+          emailStatus.textContent = "Unable to send your message. Please try again.";
+        } finally {
+          emailButton.disabled = false;
+          emailButton.textContent = "Submit";
+        }
+      });
+    }
+  } else {
+    console.error("EmailJS SDK failed to load.");
+  }
 </script>
 
 
